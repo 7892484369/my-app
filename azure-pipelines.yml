@@ -15,7 +15,19 @@ steps:
 
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml' 
+    mavenPomFile: - task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Maven'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+    pmdRunAnalysis: true
+    findBugsRunAnalysis: true 
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: myweb'
