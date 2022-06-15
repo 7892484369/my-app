@@ -33,7 +33,12 @@ steps:
   displayName: 'Publish Artifact: myweb'
   inputs:
     targetPath: '$(Pipeline.Workspace)' 
-    artifactName: "myweb.war"
+    artifactName: "- task: CopyPublishBuildArtifacts@1
+  inputs:
+    CopyRoot: 'PublishBuildArtifacts@1'
+    Contents: 'myweb.war'
+    ArtifactName: 'myweb.war'
+    ArtifactType: 'FilePath'"
   condition: succeeded()
 
 - task: DownloadPipelineArtifact@2
